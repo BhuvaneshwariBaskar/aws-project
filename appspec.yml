@@ -1,0 +1,15 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html  # Adjust this path to your application’s location on EC2
+hooks:
+  AfterInstall:
+    - location: scripts/install_dependencies.sh  # Optional post-install script
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh  # Optional start script
+      timeout: 300
+      runas: root
+
