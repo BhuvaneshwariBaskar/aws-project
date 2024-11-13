@@ -1,0 +1,23 @@
+name: Example Workflow to Use GitHub Secrets
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  example_job:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get secret from GitHub Secrets
+        run: |
+          echo "MY_SECRET_VALUE=${{ secrets.MY_SECRET }}" >> $GITHUB_ENV
+          
+      - name: Use secret in the script
+        run: |
+          echo "The secret value is $MY_SECRET_VALUE"
+
